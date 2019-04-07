@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Table, Rating, Card } from "semantic-ui-react";
+import { Container, Dropdown, Table, Card } from "semantic-ui-react";
 
 import "semantic-ui-css/semantic.min.css";
 import UserData from "../data/users.json";
@@ -13,9 +13,17 @@ class UsersList extends Component {
           {UserData.map((userDetail, index) => {
             return (
               <div>
+                <Dropdown text="All Users">
+                  <Dropdown.Menu>
+                    <Dropdown.Item text="New" />
+                    <Dropdown.Item text="Safe..." />
+                    <Dropdown.Item text="Suspicious..." />
+                    <Dropdown.Item text="Malicious" />
+                  </Dropdown.Menu>
+                </Dropdown>
                 <Table celled padded>
                   <Table.Header>
-                    <Table.Row>
+                    <Table.Row fluid>
                       <Table.HeaderCell singleLine>
                         {" "}
                         Evidence Rating{" "}
