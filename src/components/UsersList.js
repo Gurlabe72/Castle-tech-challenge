@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Header, Table, Rating } from "semantic-ui-react";
+import { Container, Header, Table, Rating, Card } from "semantic-ui-react";
 
 import "semantic-ui-css/semantic.min.css";
 import UserData from "../data/users.json";
@@ -29,10 +29,22 @@ class UsersList extends Component {
                   <Table.Body>
                     <Table.Row>
                       <Table.Cell>
-                        <Header as="h2" textAlign="center">
-                          {" "}
-                          {userDetail.risk}{" "}
-                        </Header>{" "}
+                        <Card
+                          key={index}
+                          color={(() => {
+                            if (userDetail.risk <= 0.6) {
+                              return "green";
+                            } else if (userDetail.risk <= 0.89) return "yellow";
+                            else return "red";
+                          })()}
+                          fluid
+                          raised
+                          link
+                        >
+                          <Card.Content header={userDetail.risk} />
+
+                          <Card.Content extra />
+                        </Card>
                       </Table.Cell>{" "}
                       <Table.Cell singleLine> {userDetail.id} </Table.Cell>{" "}
                       <Table.Cell>
