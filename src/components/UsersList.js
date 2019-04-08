@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Container, Dropdown, Table, Card } from "semantic-ui-react";
-
+import { Container, Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import UserData from "../data/users.json";
 
 class UsersList extends Component {
@@ -14,11 +12,6 @@ class UsersList extends Component {
           {UserData.map((userDetail, index) => {
             return (
               <div>
-                <Router>
-                  <NavLink to="/Safe" text="Safe..." />
-                  <NavLink to="/Suspicious" text="Suspicious..." />
-                  <NavLink to="Malicious" text="Malicious" />
-                </Router>
                 <Table celled padded>
                   <Table.Header>
                     <Table.Row fluid>
@@ -31,7 +24,7 @@ class UsersList extends Component {
                       <Table.HeaderCell> HASHED EMAIL </Table.HeaderCell>{" "}
                       <Table.HeaderCell> LAST LOCATION </Table.HeaderCell>{" "}
                     </Table.Row>{" "}
-                  </Table.Header>
+                  </Table.Header>{" "}
                   <Table.Body>
                     <Table.Row>
                       <Table.Cell>
@@ -50,18 +43,20 @@ class UsersList extends Component {
                           <Card.Content header={userDetail.risk} />
 
                           <Card.Content extra />
-                        </Card>
+                        </Card>{" "}
                       </Table.Cell>{" "}
                       <Table.Cell singleLine> {userDetail.id} </Table.Cell>{" "}
                       <Table.Cell>
-                        {userDetail.name}
-                        {/* <Rating icon="star" defaultRating={3} maxRating={3} />{" "} */}
+                        {" "}
+                        {userDetail.name}{" "}
+                        {/* <Rating icon="star" defaultRating={3} maxRating={3} />{" "} */}{" "}
                       </Table.Cell>{" "}
                       <Table.Cell textAlign="right">
                         <br /> {userDetail.email_md5}{" "}
                       </Table.Cell>{" "}
                       <Table.Cell>
-                        {userDetail.last_location.ip}
+                        {" "}
+                        {userDetail.last_location.ip}{" "}
                         <a href="#"> 18 studies </a>{" "}
                       </Table.Cell>{" "}
                     </Table.Row>{" "}
