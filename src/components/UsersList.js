@@ -57,7 +57,7 @@ class UsersList extends Component {
                       <Table.Cell>
                         {" "}
                         {userDetail.last_location.ip}{" "}
-                        <a href="#"> 18 studies </a>{" "}
+                        <a href={userDetail.location}> Locations </a>{" "}
                       </Table.Cell>{" "}
                     </Table.Row>{" "}
                   </Table.Body>{" "}
