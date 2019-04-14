@@ -7,7 +7,7 @@ import UserData from "../data/users.json";
 const mapStyles = {
   margin: "center",
   width: "100%",
-  height: "50%"
+  height: "100%"
 };
 
 export class MapContainer extends Component {

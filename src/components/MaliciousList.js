@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Table, Card, Pagination } from "semantic-ui-react";
+import { Container, Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+import MapContainer from "./MapContainer";
+import NavBar from "./NavBar";
 import UserData from "../data/users.json";
 
-class UsersList extends Component {
+class MaliciousList extends Component {
   state = {};
 
   handleItemClick = (e, { name }) =>
@@ -13,6 +15,7 @@ class UsersList extends Component {
   render() {
     return (
       <div>
+        <NavBar />{" "}
         {UserData.map((userDetail, index) => {
           return (
             <div>
@@ -54,9 +57,9 @@ class UsersList extends Component {
             </div>
           );
         })}{" "}
+        <MapContainer />
       </div>
     );
   }
 }
-
-export default UsersList;
+export default MaliciousList;
