@@ -1,22 +1,25 @@
 import React, { Component } from "react";
 import { Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import MapContainer from "./MapContainer";
-import NavBar from "./NavBar";
 import UserData from "../data/users.json";
+import NavBar from "./NavBar";
+import MapContainer from "./MapContainer";
 
-class SuspiciousList extends Component {
+const susFilter = UserData.filter(userDetail => 0.6 > userDetail.risk <= 0.89);
+
+class UsersList extends Component {
   state = {};
 
   handleItemClick = (e, { name }) =>
     this.setState({
       activeItem: name
     });
+
   render() {
     return (
       <div>
         <NavBar />{" "}
-        {UserData.map((userDetail, index) => {
+        {susFilter.map((userDetail, index) => {
           return (
             <div>
               <Table key={index} compact={true} attached={true} celled padded>
@@ -35,9 +38,7 @@ class SuspiciousList extends Component {
                         raised
                         link
                       >
-                        <Card.Content header={userDetail.risk} />
-
-                        <Card.Content extra />
+                        <Card.Content header={userDetail.risk} />{" "}
                       </Card>{" "}
                     </Table.Cell>{" "}
                     <Table.Cell width={2}> {userDetail.id} </Table.Cell>{" "}
@@ -62,4 +63,5 @@ class SuspiciousList extends Component {
     );
   }
 }
-export default SuspiciousList;
+
+export default UsersList;

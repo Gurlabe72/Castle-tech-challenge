@@ -1,22 +1,25 @@
 import React, { Component } from "react";
-import { Container, Table, Card } from "semantic-ui-react";
+import { Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
-import MapContainer from "./MapContainer";
-import NavBar from "./NavBar";
 import UserData from "../data/users.json";
+import NavBar from "./NavBar";
+import MapContainer from "./MapContainer";
 
-class MaliciousList extends Component {
+const malFilter = UserData.filter(userDetail => userDetail.risk >= 0.89);
+
+class UsersList extends Component {
   state = {};
 
   handleItemClick = (e, { name }) =>
     this.setState({
       activeItem: name
     });
+
   render() {
     return (
       <div>
         <NavBar />{" "}
-        {UserData.map((userDetail, index) => {
+        {malFilter.map((userDetail, index) => {
           return (
             <div>
               <Table key={index} compact={true} attached={true} celled padded>
@@ -35,9 +38,7 @@ class MaliciousList extends Component {
                         raised
                         link
                       >
-                        <Card.Content header={userDetail.risk} />
-
-                        <Card.Content extra />
+                        <Card.Content header={userDetail.risk} />{" "}
                       </Card>{" "}
                     </Table.Cell>{" "}
                     <Table.Cell width={2}> {userDetail.id} </Table.Cell>{" "}
@@ -62,4 +63,5 @@ class MaliciousList extends Component {
     );
   }
 }
-export default MaliciousList;
+
+export default UsersList;

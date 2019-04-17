@@ -14,12 +14,7 @@ export class MapContainer extends Component {
   render() {
     return (
       <div>
-        <Map
-          padding="15%"
-          google={this.props.google}
-          zoom={3}
-          style={mapStyles}
-        >
+        <Map google={this.props.google} zoom={3} style={mapStyles}>
           {UserData.map((userDetail, index) => {
             return (
               <Marker

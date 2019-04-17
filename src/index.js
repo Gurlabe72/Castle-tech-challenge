@@ -2,17 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import SuspiciousList from "../src/components/SuspiciousList";
-import MaliciousList from "../src/components/MaliciousList";
-import SafeList from "../src/components/SafeList";
+import SuspiciousList from "./components/SuspiciousList";
+import MaliciousList from "./components/MaliciousList";
 import { BrowserRouter as Router } from "react-router-dom";
 import Route from "react-router-dom/Route";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Router>
-    <Route exact path="/" component={App} />
-    <Route exact path="/SafeList" component={SafeList} />{" "}
+    <Route exact path="/" component={App} />{" "}
     <Route exact path="/SuspiciousList" component={SuspiciousList} />{" "}
     <Route exact path="/MaliciousList" component={MaliciousList} />{" "}
   </Router>,

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Table, Card, Pagination } from "semantic-ui-react";
+import { Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import UserData from "../data/users.json";
+
+const safeFilter = UserData.filter(userDetail => userDetail.risk <= 0.6);
 
 class UsersList extends Component {
   state = {};
@@ -10,10 +12,12 @@ class UsersList extends Component {
     this.setState({
       activeItem: name
     });
+
   render() {
     return (
       <div>
-        {UserData.map((userDetail, index) => {
+        {" "}
+        {safeFilter.map((userDetail, index) => {
           return (
             <div>
               <Table key={index} compact={true} attached={true} celled padded>
@@ -32,9 +36,7 @@ class UsersList extends Component {
                         raised
                         link
                       >
-                        <Card.Content header={userDetail.risk} />
-
-                        <Card.Content extra />
+                        <Card.Content header={userDetail.risk} />{" "}
                       </Card>{" "}
                     </Table.Cell>{" "}
                     <Table.Cell width={2}> {userDetail.id} </Table.Cell>{" "}
