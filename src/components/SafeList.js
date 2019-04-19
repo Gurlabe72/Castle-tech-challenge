@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import { Table, Card } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
 import UserData from "../data/users.json";
-import NavBar from "./NavBar";
-import MapContainer from "./MapContainer";
+import MapContainer from "../Maps/MapContainer";
+import NavBar from "../components/NavBar";
 
-const susFilter = UserData.filter(userDetail => 0.6 > userDetail.risk <= 0.89);
+const safeFilter = UserData.filter(userDetail => userDetail.risk <= 0.6);
+const styles = {
+  header: {
+    background: "rgba(0, 0, 0, 0.5)",
+    height: "100vh",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  }
+};
 
 class UsersList extends Component {
   state = {};
-
   handleItemClick = (e, { name }) =>
     this.setState({
       activeItem: name
@@ -19,10 +27,17 @@ class UsersList extends Component {
     return (
       <div>
         <NavBar />{" "}
-        {susFilter.map((userDetail, index) => {
+        {safeFilter.map((userDetail, index) => {
           return (
             <div>
-              <Table key={index} compact={true} attached={true} celled padded>
+              <Table
+                styles={styles}
+                key={index}
+                compact={true}
+                attached={true}
+                celled
+                padded
+              >
                 <Table.Body>
                   <Table.Row>
                     <Table.Cell width={2}>
@@ -32,7 +47,7 @@ class UsersList extends Component {
                           if (userDetail.risk <= 0.6) {
                             return "green";
                           } else if (userDetail.risk <= 0.89) return "yellow";
-                          else return "yellow";
+                          else return "red";
                         })()}
                         fluid
                         raised
